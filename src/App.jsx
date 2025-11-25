@@ -5,7 +5,7 @@ import SearchArea from './components/SearchArea';
 import DefinitionView from './components/DefinitionView';
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(() => window.innerWidth >= 768);
   const [currentView, setCurrentView] = useState('search'); // 'search', 'history', 'bookmarks', 'settings'
   const [searchResult, setSearchResult] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -58,7 +58,7 @@ function App() {
 
   return (
     <div style={{ display: 'flex', height: '100vh', width: '100vw', overflow: 'hidden' }}>
-      {!isSidebarOpen && (
+      {isSidebarOpen && window.innerWidth < 768 && (
         <div
           onClick={toggleSidebar}
           style={{
@@ -67,9 +67,8 @@ function App() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: 'rgba(0,0,0,0.2)',
-            zIndex: 15,
-            display: window.innerWidth < 768 ? 'block' : 'none'
+            backgroundColor: 'rgba(0,0,0,0.4)',
+            zIndex: 15
           }}
         />
       )}
@@ -96,7 +95,7 @@ function App() {
         display: 'flex',
         flexDirection: 'column',
         position: 'relative',
-        marginLeft: isSidebarOpen ? '260px' : '0',
+        marginLeft: window.innerWidth >= 768 && isSidebarOpen ? '260px' : '0',
         transition: 'margin-left 0.3s ease',
         overflow: 'hidden'
       }}>
@@ -124,7 +123,7 @@ function App() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: searchResult ? 'flex-start' : 'center',
-          padding: '2rem',
+          padding: window.innerWidth < 768 ? '1rem' : '2rem',
           overflowY: 'auto',
           maxWidth: '900px',
           margin: '0 auto',

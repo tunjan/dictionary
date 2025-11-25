@@ -115,4 +115,37 @@ button:active {
   h1 {
     font-size: 2rem !important;
   }
+
+  /* Ensure touch-friendly minimum sizes */
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Prevent zoom on input focus on iOS */
+  input,
+  textarea {
+    font-size: 16px !important;
+  }
+}
+
+/* Mobile-first breakpoints */
+@media (max-width: 480px) {
+  :root {
+    --spacing-md: 0.75rem;
+    --spacing-lg: 1rem;
+    --spacing-xl: 1.25rem;
+    --spacing-2xl: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.75rem !important;
+  }
+}
+
+/* Improve touch scrolling on mobile */
+@media (max-width: 768px) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
 }
