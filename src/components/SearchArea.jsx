@@ -55,16 +55,16 @@ const SearchArea = ({ setSearchResult, setIsLoading, hasResult }) => {
             transition: 'all 0.5s ease'
         }}>
             {!hasResult && (
-                <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                <div style={{ textAlign: 'center', marginBottom: window.innerWidth < 768 ? '1.5rem' : '2rem' }}>
                     <h1 style={{
                         fontFamily: 'var(--font-serif)',
-                        fontSize: '2.5rem',
+                        fontSize: window.innerWidth < 768 ? (window.innerWidth < 480 ? '1.75rem' : '2rem') : '2.5rem',
                         marginBottom: '0.5rem',
                         color: 'var(--color-text)'
                     }}>
                         What are you looking for?
                     </h1>
-                    <p style={{ color: 'var(--color-text-secondary)' }}>
+                    <p style={{ color: 'var(--color-text-secondary)', fontSize: window.innerWidth < 480 ? '0.9rem' : '1rem' }}>
                         Discover definitions, etymologies, and nuances.
                     </p>
                 </div>
@@ -112,12 +112,14 @@ const SearchArea = ({ setSearchResult, setIsLoading, hasResult }) => {
                         backgroundColor: query.trim() ? 'var(--color-accent)' : '#E6E2DD',
                         color: '#fff',
                         borderRadius: '6px',
-                        padding: '0.5rem',
+                        padding: '0.625rem',
                         transition: 'background-color 0.2s ease',
                         cursor: query.trim() ? 'pointer' : 'default',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center'
+                        justifyContent: 'center',
+                        minWidth: '44px',
+                        minHeight: '44px'
                     }}
                 >
                     <ArrowUp size={20} />

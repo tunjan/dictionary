@@ -40,33 +40,45 @@ const DefinitionView = ({ data, onBookmark, isBookmarked }) => {
     };
 
     return (
-        <div style={{ width: '100%', maxWidth: '700px', marginTop: '2rem', paddingBottom: '4rem' }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1rem' }}>
+        <div style={{ width: '100%', maxWidth: '700px', marginTop: window.innerWidth < 768 ? '1rem' : '2rem', paddingBottom: '4rem' }}>
+            <div style={{
+                display: 'flex',
+                flexDirection: window.innerWidth < 768 ? 'column' : 'row',
+                justifyContent: 'space-between',
+                alignItems: window.innerWidth < 768 ? 'flex-start' : 'flex-start',
+                gap: window.innerWidth < 768 ? '1rem' : '0',
+                marginBottom: '1rem'
+            }}>
                 <div>
                     <h1 style={{
                         fontFamily: 'var(--font-serif)',
-                        fontSize: '3rem',
+                        fontSize: window.innerWidth < 768 ? '2rem' : window.innerWidth < 480 ? '1.75rem' : '3rem',
                         color: 'var(--color-text)',
                         marginBottom: '0.5rem'
                     }}>
                         {data.word || 'Word'}
                     </h1>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--color-text-secondary)' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--color-text-secondary)', flexWrap: 'wrap' }}>
                         <span style={{ fontFamily: 'monospace', fontSize: '1.1rem' }}>/{data.phonetic || 'phonetic'}/</span>
                         <span style={{ fontStyle: 'italic' }}>{data.partOfSpeech || 'noun'}</span>
                     </div>
                 </div>
 
-                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.5rem', flexShrink: 0 }}>
                     <button
                         onClick={handleSpeak}
                         style={{
-                            padding: '0.5rem',
+                            padding: '0.625rem',
                             borderRadius: '6px',
                             color: isPlaying ? 'var(--color-accent)' : 'var(--color-text-secondary)',
                             border: '1px solid var(--color-border)',
                             backgroundColor: isPlaying ? '#F5F2EB' : 'transparent',
-                            transition: 'all 0.2s ease'
+                            transition: 'all 0.2s ease',
+                            minWidth: '44px',
+                            minHeight: '44px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         }}
                     >
                         <Volume2 size={20} />
@@ -74,12 +86,17 @@ const DefinitionView = ({ data, onBookmark, isBookmarked }) => {
                     <button
                         onClick={() => onBookmark && onBookmark(data)}
                         style={{
-                            padding: '0.5rem',
+                            padding: '0.625rem',
                             borderRadius: '6px',
                             color: isBookmarked ? 'var(--color-accent)' : 'var(--color-text-secondary)',
                             border: '1px solid var(--color-border)',
                             backgroundColor: isBookmarked ? '#F5F2EB' : 'transparent',
-                            transition: 'all 0.2s ease'
+                            transition: 'all 0.2s ease',
+                            minWidth: '44px',
+                            minHeight: '44px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         }}
                     >
                         {isBookmarked ? <BookmarkCheck size={20} /> : <Bookmark size={20} />}
@@ -87,11 +104,16 @@ const DefinitionView = ({ data, onBookmark, isBookmarked }) => {
                     <button
                         onClick={handleShare}
                         style={{
-                            padding: '0.5rem',
+                            padding: '0.625rem',
                             borderRadius: '6px',
                             color: 'var(--color-text-secondary)',
                             border: '1px solid var(--color-border)',
-                            transition: 'all 0.2s ease'
+                            transition: 'all 0.2s ease',
+                            minWidth: '44px',
+                            minHeight: '44px',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center'
                         }}
                     >
                         <Share2 size={20} />

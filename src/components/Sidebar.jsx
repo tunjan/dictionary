@@ -29,17 +29,21 @@ const Sidebar = ({ isOpen, toggleSidebar, currentView, setCurrentView, history =
         marginBottom: '0.25rem',
         transition: 'background-color 0.2s ease',
         fontSize: '0.95rem',
-        fontWeight: 500
+        fontWeight: 500,
+        minHeight: '44px'
     });
 
     const listItemStyle = {
-        padding: '0.5rem 1rem',
+        padding: '0.75rem 1rem',
         cursor: 'pointer',
         borderRadius: '4px',
         marginBottom: '0.25rem',
         transition: 'background-color 0.2s ease',
         fontSize: '0.9rem',
         color: 'var(--color-text-secondary)',
+        minHeight: '44px',
+        display: 'flex',
+        alignItems: 'center'
     };
 
     const renderContent = () => {
